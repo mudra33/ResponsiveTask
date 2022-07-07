@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" />
+    <style>
+        .top {
+            background-color: #565656;
+            height: 150px;
+            position: relative;
+        }
+
+        .middle {
+            background-color: white;
+            height: 30px;
+            padding-top: 0px;
+            position: hidden;
+        }
+
+        .bottom {
+            background-color: #565656;
+            height: 30px;
+            padding-top: 0px;
+            position: relative;
+        }
+
+        img {
+            border-radius: 50%;
+            border: 5px dotted #fbbe28;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #nametag {
+            position: absolute;
+            background-color: #fbbe28;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%);
+            font-size: 50px;
+            border-radius: 10px;
+        }
+
+        td,
+        tr {
+            vertical-align: top;
+            width: 50%;
+            /* border-right: 2px solid rgba(105, 105, 105, 0.7); */
+        }
+
+        .topics {
+            font-family: Arial;
+            font-size: 25px;
+        }
+
+        body {
+            font-family: Arial;
+        }
+
+        input[type='range'] {
+            overflow: hidden;
+            width: 80px;
+            -webkit-appearance: none;
+            background-color: white;
+        }
+
+        input[type='range']::-webkit-slider-thumb {
+            width: 10px;
+            -webkit-appearance: none;
+            height: 10px;
+            background: white;
+            box-shadow: -80px 0 0 80px yellow;
+            border-radius: 50%;
+        }
+
+        input[type='range'] {
+            overflow: hidden;
+            width: 80px;
+            -webkit-appearance: none;
+            background-color: white;
+        }
+
+        #icons {
+            color: rgb(255, 187, 0);
+            background-color: rgb(73, 72, 72);
+            border-radius: 50%;
+            border: 3px dotted rgb(255, 187, 0);
+            padding: 6px;
+        }
+
+        .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding-left: 260px;padding-right: 260px;">
+        <!--  Header part -->
+        <div>
+            <div class="top">
+                <img src="data:image/jpeg;base64,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"
+                    height="140px" width="140px" alt="ressumeimg">
+                <p id="nametag"> STEVE JOBS </p>
+            </div>
+
+            <div class="middle"></div>
+
+            <div class="bottom"></div>
+        </div>
+        <div>
+            <p style="text-align: center;">
+                N.Damen Avenue ,Chicago 9999 |999-999-9999| hello@kickresume.com |wwww.kickresume.com
+            </p>
+            <hr>
+        </div>
+
+        <div style="position: relative;">
+            <table style="position: absolute;">
+                <div class="vl"></div>
+                <tr>
+
+                    <!-- first row -->
+
+                    <td style="border-right: 2px solid rgba(105, 105, 105, 0.7);">
+                        <!-- Profile -->
+                        <p>
+                            <i class="fa fa-user" aria-hidden="true" id="icons"></i> <span class="topics">Profile</span>
+                        </p> <br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis magni quis impedit quisquam
+                        reiciendis. Dolor rerum nemo laboriosam et optio?
+                        <!-- Skills -->
+                        <p>
+                            <i class="fa fa-flask" aria-hidden="true" id="icons"></i> <span class="topics">Skills</span>
+                        </p><br>
+                        <!--Technical Skills -->
+                        <b style="text-align: center;padding-left: 40%;">Technical skills</b> <br>
+
+                        JavaScript <input type="range" min="1" max="100" value="50"> <br>
+                        CSS <input type="range" min="1" max="100" value="50"> <br>
+                        HTML <input type="range" min="1" max="100" value="50"> <br>
+                        React <input type="range" min="1" max="100" value="50"> <br>
+                        Redux <input type="range" min="1" max="100" value="50"><br>
+                        MongoDB <input type="range" min="1" max="100" value="50"> <br>
+                        Deployment <input type="range" min="1" max="100" value="50"><br>
+                        <br>
+                        <!--Additional Skills -->
+                        <b style="text-align: center;padding-left: 40%;">Additional skills</b> <br>
+                        Project Management <input type="range" min="1" max="100" value="50"><br>
+                        Recrutment <input type="range" min="1" max="100" value="50"> <br>
+                        Business Development <input type="range" min="1" max="100" value="50"><br>
+                        Editing <input type="range" min="1" max="100" value="50"> <br>
+                        Fundraising <input type="range" min="1" max="100" value="50"
+                            style="background-color: yellow;"><br>
+                        <!--Work Experiance -->
+                        <p>
+                            <i class="fa fa-briefcase" aria-hidden="true" id="icons"></i> <span class="topics">Work
+                                Experiance</span> <br>
+                            <b style="padding-right: 150px;">Event Manager</b> 03/2014-01/2017 <br>
+                            <br>
+                        </p><br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+                        <br>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis expedita debitis vel
+                                quidem corporis dolore,
+                                molestiae ipsum ut fugiat repudiandae, in consectetur iste distinctio esse, quos
+                                quibusdam a. Quam, vel.</li>
+                            <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem voluptate blanditiis
+                                porro, dolores dolore ipsam
+                                voluptatibus. Aliquid perspiciatis at necessitatibus vero reiciendis expedita saepe
+                                incidunt corrupti nesciunt
+                                autem! Molestias, ex.</li>
+                            <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo minus voluptatum
+                                necessitatibus aspernatur deserunt,
+                                labore accusamus molestiae dignissimos sequi quas? Dolor vero </li>
+                        </ul>
+
+                    </td><br>
+
+                    <!-- Second row -->
+
+
+                    <td style="padding-left: 30px;padding-right: 40px;">
+                        <!-- Work Experiance -->
+                        <p>
+                            <i class="fa fa-briefcase" aria-hidden="true" id="icons"></i> <span class="topics">Work
+                                Experiance</span> <br>
+                            <b style="padding-right: 140px;">Comunity Relation</b> 06/2011-01/2014 <br>
+                            <B>Manager</B><br>
+                        </p><br>
+
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora et nostrum excepturi molestias
+                        impedit. Perspiciatis modi officiis amet explicabo vero? <br>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+                            <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, distinctio?</li>
+                            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad consectetur fuga laborum?
+                                Suscipit quasi molestias deserunt sed facilis.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </li>
+                        </ul>
+                        <!-- Education -->
+                        <p>
+                            <i class="fa fa-graduation-cap" aria-hidden="true" id="icons"></i>
+                            <span class="topics">Education</span><br>
+                            <b style="padding-right: 100px;">Engineering Immersion</b> 11/2018/-06/2018 <br>
+                            <b>vission</b>
+                        </p><br>
+                        thankful,chikago are <br><br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique unde consequatur ipsam
+                        voluptatem commodi aliquid.
+                        Rerum delectus, non temporibus error nesciunt quisquam pariatur animi et sequi tempora,
+                        repellat, nam hic!<br>
+                        <br>
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis expedita debitis vel
+                                quidem corporis dolore,
+                                molestiae ipsum ut fugiat repudiandae, in consectetur iste distinctio esse, quos
+                                quibusdam a. Quam, vel.</li>
+                            <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem voluptate blanditiis
+                                porro, dolores dolore ipsam
+                                voluptatibus. Aliquid perspiciatis at necessitatibus vero reiciendis expedita saepe
+                                incidunt corrupti nesciunt
+                                autem! Molestias, ex.</li>
+                            <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo minus voluptatum
+                                necessitatibus aspernatur deserunt,
+                                labore accusamus molestiae dignissimos sequi quas? Dolor vero recusandae voluptatibus
+                                voluptatem, quis saepe nam nostrum veniam
+                                Lorem ipsum dolor sit amet consectetur
+                            </li>
+                        </ul>
+                        <!-- BA,English -->
+                        <p>
+                            <b style="padding-right: 200px;">BA,English</b>
+                            09/2001-09/2005<br>
+                            Universityof California,Los Angels
+                        </p>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
